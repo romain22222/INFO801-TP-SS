@@ -12,7 +12,7 @@ class EspaceTupleInfo:
 
 class EspaceTuple(ObjectConnectable):
     def __init__(self) -> 'EspaceTuple':
-        super()
+        ObjectConnectable.__init__(self)
         self.codes: Dict[str, EspaceTupleInfo] = {}
 
     def ajouterCode(self, code: str, essence: EssenceType, qte: float):

@@ -12,7 +12,7 @@ class WrongPompeNumber(Exception):
 
 class StationService(ObjectConnectable):
     def __init__(self, nbPompes: int):
-        super()
+        ObjectConnectable.__init__(self)
         et = EspaceTuple()
         self.addConnexion("EspaceTuple", et)
         self.addConnexion("Caisse", Caisse(et))
@@ -30,7 +30,7 @@ class StationService(ObjectConnectable):
         return self.getConnexion(f"Pompe{pompeNb}").faireLePlein(code, qte)
 
     def ajouterPompe(self, nb: int, et: EspaceTuple):
-        for i in nb:
+        for i in range(nb):
             self.addConnexion(f"Pompe{i}", Pompe(et))
 
 

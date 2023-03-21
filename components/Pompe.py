@@ -5,8 +5,17 @@ from .EspaceTuple import EspaceTuple
 
 class Pompe(ObjectConnectable):
     def __init__(self, et: EspaceTuple) -> 'Pompe':
-        super()
+        ObjectConnectable.__init__(self)
         self.addConnexion("EspaceTuple", et)  # Telephone maison
 
     def faireLePlein(self, code: str, quantite: float) -> Ticket:
-        pass
+        et = self.getConnexion("EspaceTuple")
+        info = et.getCode(code)
+        qteSave = info.qte
+
+        if qteSave >= quantite:
+            et.editerCode(code, qteSave - quantite)
+            return Ticket(code, qteSave - quantite)
+        else:
+            et.editerCode(code, 0)
+            return Ticket(code, 0)
