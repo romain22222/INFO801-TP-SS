@@ -1,10 +1,10 @@
 import math
 import random
 
-from EspaceTuple import EspaceTuple
-from EssenceType import EssenceType
-from ObjectConnectable import ObjectConnectable
-from Ticket import Ticket
+from .EspaceTuple import EspaceTuple
+from .EssenceType import EssenceType
+from .ObjectConnectable import ObjectConnectable
+from .Ticket import Ticket
 
 
 class Caisse(ObjectConnectable):

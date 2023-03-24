@@ -19,8 +19,8 @@ def displayChoices():
 def getUserEssence():
     while True:
         essence = input("Essence : \n")
-        if essence in "123456789":
-            return dir(EssenceType)[int(essence) - 1]
+        if int(essence) in range(1, 10):
+            return list(EssenceType.__members__.keys())[int(essence) - 1]
         elif essence in EssenceType.__members__.keys():
             return essence
         print("\033[91;1;4;5;53;58;5;31mEssence invalide !\033[0m\n")
@@ -41,13 +41,13 @@ def acheterEssence():
 
 
 def faireLePlein():
+    code, t = infosTicket()
     while True:
-        nPompe = input("Quelle pompe ?\n")
+        nPompe = int(input("Quelle pompe ?\n"))
         if nPompe in range(station.nbPompes):
             break
         print("Mauvais numéro de pompe ! Veuillez en spécifier une valide")
-    code = input("Quel est le code de votre ticket ?\n")
-    cbLitres = input("Combien de litres voulez-vous retirer ?\n")
+    cbLitres = float(input("Combien de litres voulez-vous retirer ?\n"))
     res = station.remplirReservoir(code, cbLitres, nPompe)
     if res.qte < 0:
         print(f"Vous n'avez pas pu remplir votre réservoir au maximum, il vous manque {-res.qte} litres")
@@ -58,6 +58,18 @@ def faireLePlein():
     pass
 
 
+def infosTicket():
+    code = input("Sur quel ticket ?\n")
+    try:
+        t = station.getInfos(code)
+        print(t)
+    except Exception:
+        t = None
+        print("Aucun ticket n'est relié à ce code")
+    print()
+    return code, t
+
+
 def manageInput(userInputMI):
     match userInputMI:
         case "4":
@@ -65,9 +77,9 @@ def manageInput(userInputMI):
         case "1":
             acheterEssence()
         case "2":
-            pass
+            faireLePlein()
         case "3":
-            pass
+            infosTicket()
     return True
 
 
