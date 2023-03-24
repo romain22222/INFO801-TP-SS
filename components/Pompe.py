@@ -1,6 +1,6 @@
-from .ObjectConnectable import ObjectConnectable
-from .Ticket import Ticket
-from .EspaceTuple import EspaceTuple
+from EspaceTuple import EspaceTuple
+from ObjectConnectable import ObjectConnectable
+from Ticket import Ticket
 
 
 class Pompe(ObjectConnectable):
@@ -12,10 +12,5 @@ class Pompe(ObjectConnectable):
         et = self.getConnexion("EspaceTuple")
         info = et.getCode(code)
         qteSave = info.qte
-
-        if qteSave >= quantite:
-            et.editerCode(code, qteSave - quantite)
-            return Ticket(code, qteSave - quantite)
-        else:
-            et.editerCode(code, 0)
-            return Ticket(code, 0)
+        et.editerCode(code, qteSave - quantite if qteSave >= quantite else 0)
+        return Ticket(code, qteSave - quantite)

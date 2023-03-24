@@ -1,9 +1,9 @@
-from .EssenceType import EssenceType
-from .EspaceTuple import EspaceTuple
-from .ObjectConnectable import ObjectConnectable
-from .Caisse import Caisse
-from .Pompe import Pompe
-from .Ticket import Ticket
+from Caisse import Caisse
+from EspaceTuple import EspaceTuple
+from EssenceType import EssenceType
+from ObjectConnectable import ObjectConnectable
+from Pompe import Pompe
+from Ticket import Ticket
 
 
 class WrongPompeNumber(Exception):
@@ -32,6 +32,3 @@ class StationService(ObjectConnectable):
     def ajouterPompe(self, nb: int, et: EspaceTuple):
         for i in range(nb):
             self.addConnexion(f"Pompe{i}", Pompe(et))
-
-
-

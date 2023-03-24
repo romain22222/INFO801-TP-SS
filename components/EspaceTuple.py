@@ -1,7 +1,7 @@
 from typing import Dict
 
-from .EssenceType import EssenceType
-from .ObjectConnectable import ObjectConnectable
+from EssenceType import EssenceType
+from ObjectConnectable import ObjectConnectable
 
 
 class EspaceTupleInfo:

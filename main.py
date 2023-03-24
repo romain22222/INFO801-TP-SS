@@ -1,17 +1,5 @@
-from components.StationService import StationService
 from components.EssenceType import EssenceType
-from components.Caisse import Caisse
-
-
-# This is a sample Python script.
-
-# Press Maj+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
-
-
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
+from components.StationService import StationService
 
 
 def displayChoices():
@@ -32,7 +20,7 @@ def getUserEssence():
     while True:
         essence = input("Essence : \n")
         if essence in "123456789":
-            return dir(EssenceType)[int(essence)-1]
+            return dir(EssenceType)[int(essence) - 1]
         elif essence in EssenceType.__members__.keys():
             return essence
         print("\033[91;1;4;5;53;58;5;31mEssence invalide !\033[0m\n")
@@ -53,8 +41,20 @@ def acheterEssence():
 
 
 def faireLePlein():
-    nPompe = input("Quelle pompe ?")
+    while True:
+        nPompe = input("Quelle pompe ?\n")
+        if nPompe in range(station.nbPompes):
+            break
+        print("Mauvais numéro de pompe ! Veuillez en spécifier une valide")
     code = input("Quel est le code de votre ticket ?\n")
+    cbLitres = input("Combien de litres voulez-vous retirer ?\n")
+    res = station.remplirReservoir(code, cbLitres, nPompe)
+    if res.qte < 0:
+        print(f"Vous n'avez pas pu remplir votre réservoir au maximum, il vous manque {-res.qte} litres")
+    elif res.qte > 0:
+        print(f"Il vous reste {res.qte} litres sur ce code")
+    else:
+        print(f"Le code a complètement été vidé")
     pass
 
 
@@ -73,9 +73,6 @@ def manageInput(userInputMI):
 
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
-    print_hi('PyCharm')
-    print('No, Vs Code !')
-
     keepRefill = True
     station = StationService(6)
 
