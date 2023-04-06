@@ -24,15 +24,15 @@ Pour ce qui est des composants, nous avons :
 
 Pour ce qui est des connecteurs, nous avons :
 
-- Deux connecteurs entre les clients et la station service (un où le client est provider, et un où il est required), représentant les différentes actions que le client peut effectuer à la station (ici acheter de l'essence, faire le plein, et se renseigner sur son code)
+- Un connecteur entre les clients et la station service, représentant les différentes actions que le client peut effectuer à la station (ici acheter de l'essence, faire le plein, et se renseigner sur son code)
 
-- Deux connecteurs entre la caisse et la station permettant l'interaction entre la caisse et l'extérieur
+- Un connecteur entre la caisse et la station permettant l'interaction entre la caisse et l'extérieur
 
-- Deux connecteurs entre une pompe et la station permettant l'interaction entre cette pompe et l'extérieur
+- Un connecteur entre une pompe et la station permettant l'interaction entre cette pompe et l'extérieur
 
-- Deux connecteurs entre la caisse et l'espace de tuples afin d'envoyer et recevoir des tuples enregistrés pour le bien du système
+- Un connecteur entre la caisse et l'espace de tuples afin d'envoyer et recevoir des tuples enregistrés pour le bien du système
 
-- Deux connecteurs entre une pompe et l'espace de tuples afin d'envoyer et recevoir des tuples enregistrés pour le bien du système
+- Un connecteur entre une pompe et l'espace de tuples afin d'envoyer et recevoir des tuples enregistrés pour le bien du système
 
 Pour ce qui est de l'espace de tuples, nous avons convenu du schéma suivant :
 
