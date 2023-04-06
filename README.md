@@ -4,7 +4,7 @@
 Tout d'abord, lors de ce TP, nous avons commencé par créer un schéma architectural. Après réflexion, nous avons convenu d'un schéma de type "Composants connecteur" pour représenter les différents éléments, ainsi que les espaces de tuples afin de représenter les données communiquées entre les clients et la station service, et à l'intérieur de la station service.
 
 Le schéma auquel nous avons finalement aboutit est celui ci-dessous :
-![Schéma Station Service](./assets/ScemaSS.png)
+![Schéma Station Service](./assets/SchemaSS.png)
 
 Les raisons de notres choix sur l'architecture sont les suivantes : 
 - Faible couplage entre les composants (ex: Conducteur/Station Service)
@@ -49,6 +49,11 @@ Pour réaliser ce système, nous avons choisis d'utiliser python, avec une appro
 La partie conception étant réalisée et comprise, nous avons donc facilement implémenté les différentes composantes du sytème (à savoir la station service, la caisse, les pompes et l'espace de tuples).
 Cependant, il nous fallait implémenter un moyen de communiquer avec un conducteur, ainsi que d'unifier les types d'essence.
 C'est pourquoi nous avons créer la classe `Ticket` et l'énumérateur `EssenceType`.
+
+Pour stocker les données qu'on utilise, l'espace de tuple est une classe qui contient un dictionnaire, avec pour clé le code, et comme valeur de tuple `<TypeEssence|Quantité>`. 
+
+De plus, pour représenter les liens entre les différents services, nous avons implémenté une super classe `ObjectConnectable` qui contient une liste d'`ObjectConnectable` ainsi que ses getter / setters. Cette classe nous permet d'instancier une connection entre plusieurs services. Ainsi il nous est plus aisé de faire communiquer la caisse avec l'espace de tuple, par exemple.
+On parle de super classe, car toutes les classes des différents composants (Station Service, Espace de Tuple, Caisse, Pompe) héritent de cette classe.
 
 ## Comment l'utiliser
 <ol>
